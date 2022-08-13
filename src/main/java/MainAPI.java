@@ -17,11 +17,12 @@ public class MainAPI {
 
     public static void main(String[] args) {
 
-        post("/v1/user-operation/user", (req, res) -> {
+// post sample data router
+        post("/v1/user-operation/test-user", (req, res) -> {
 
-            res.type("application/json");
+            // res.type("application/json");
             // put data through body. JSON
-            User_Info user_info1 = new Gson().fromJson(req.body(), User_Info.class);
+            // User_Info user_info1 = new Gson().fromJson(req.body(), User_Info.class);
 
 
             // put data through param
@@ -59,21 +60,25 @@ public class MainAPI {
             userController.InsertNewUserController(user_info);
 
             // add user through JSON
-            userController.InsertNewUserController(user_info1);
-            System.out.println("INSERT DATA TO DB is successful.");
-            //return res.status();
+            // userController.InsertNewUserController(user_info1);
+            //System.out.println("INSERT DATA TO DB is successful.");
+            return res.status();
+
+            //return new Gson().toJson(new StandardResponse(StatusResponse.SUCCESS));
+        });
+
+// post signup by phone number
+        post("/v1/user-operation/signup-phone-number", (req, res) -> {
+
+            res.type("application/json");
+            // put data through body. JSON
+            User_Info user_info1 = new Gson().fromJson(req.body(), User_Info.class);
+
+
 
             return new Gson()
                     .toJson(new StandardResponse(StatusResponse.SUCCESS));
         });
-
-
-
-
-
-
-
-
 
 
 
